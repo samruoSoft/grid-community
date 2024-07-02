@@ -9,6 +9,9 @@
 3. The template provides a basic layout, including a header, a footer record statistics area, and a main content area, making it convenient for developers to extend upon this foundation.
 4. Certainly! The Samruo-Grid-Community template can be integrated into various frontend development frameworks and languages, including JavaScript, Vue, React, and Angular. Here's how you can leverage this template in each of these environments.
 
+![ezgif-4-0f2c83e449](https://github.com/samruoSoft/grid-community/assets/60513450/e3b1ac2e-1753-4480-b6cb-734067330e7d)
+
+
 ## Example:
 ```html
 <link rel="stylesheet" href="./dist/style.css">
