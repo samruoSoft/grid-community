@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../dist/style.css">
+    <script src='../dist/samruo-grid-community.iife.js'></script>
+</head>
+<body>
+
+<button id="btnSetWidth">SetWidth</button>
+<button id="btnSetHeight">SetHeight</button>
+<div id="app"></div>
+
+<script>
+    function openPd004(params) {
+        console.log('Opening project with Name:', params.name);
+    }
+
+    const container = document.getElementById('app');
+
+
+        let gridOptions = {
+        // width: 1000,
+        className: 'ttt',
+        height: 30 * 10 + 100,
+        rowHeight: 30,
+        autoIndex: true,
+        // multi_select: true,
+        showRowsCounter: true,
+        columns: [
+            {
+                headerName: 'User Info',
+                children: [
+                    {
+                        field: 'name',
+                        headerName: 'Name',
+                        width: 150,
+                        sortable: true,
+                        cellRenderer: (params) => {
+                            return {
+                                type: 'link',
+                                href: 'javascript:void(0)',
+                                className: 'projectName',
+                                textContent: params.data.name,
+                                onclick: (data) => {
+                                    openPd004(data);
+                                }
+                            }
+                        }
+                    },
+                    {field: 'age', headerName: 'Age', width: 60, sortable: true, align: 'right'},
+                ]
+            },
+
+            {field: 'address', headerName: 'Address', width: 200, align: 'center',},
+            {
+                field: '', headerName: 'Tools', width: 50,
+                cellRenderer: () => {
+                    return {
+                        type: 'button',
+                        className: 'btn btn-primary',
+                        textContent: "OK",
+                        onclick: (data) => {
+                            // console.log(data);
+                            alert(data.name);
+                        }
+                    }
+                }
+            }
+        ],
+        // data:[],
+        data: Array.from({length: 100000}, (_, i) => ({
+            name: `Item ${i + 1}`,
+            age: Math.floor(Math.random() * 100),
+            address: `Address ${i + 1}`
+        })),
+        language: {
+            visibleRows: 'Visible Rows',
+        }
+    }
+
+
+    let myGrid = new Samruo.GridCommunity({
+        target: container,
+        props: {
+            options: gridOptions,
+        },
+    });
+
+    function setWidth() {
+        myGrid.setWidth(500);
+    }
+
+    function setHeight() {
+        myGrid.setHeight(600);
+    }
+
+    document.getElementById('btnSetHeight').addEventListener('click', setHeight);
+    document.getElementById('btnSetWidth').addEventListener('click', setWidth);
+
+    window.addEventListener('resize', function () {
+        const finalHeight = window.innerHeight - 200;
+        myGrid.setHeight(finalHeight);
+    });
+</script>
+
+</body>
+</html>
